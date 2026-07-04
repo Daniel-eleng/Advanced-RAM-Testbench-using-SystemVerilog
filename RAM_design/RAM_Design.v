@@ -5,7 +5,7 @@
 //
 // Create Date: 05/12/2026 05:10:49 PM
 // Design Name:
-// Module Name: RAM_TB
+// Module Name: RAM_Design
 // Project Name:
 // Target Devices:
 // Tool Versions:
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RAM_TB(input clk, rst, w_enb,
+module RAM_Design(input clk, rst, w_enb,
                         input [2:0] w_addr, 
                         input [2:0] rd_addr,
                         input [7:0] data_in,
