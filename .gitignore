@@ -4,6 +4,8 @@
 *.sim/
 *.hw/
 *.ip_user_files/
+*.dir
+*.pb
 
 # Log and journal files
 *.jou
@@ -28,5 +30,3 @@ Thumbs.db
 !*.svg
 !*.pdf
 !*.tcl
-!*.dir
-!*.pb
