@@ -11,7 +11,7 @@ class RAM_monitor;
                  mailbox #(RAM_transaction) scoreboard_w_mbx,
                  mailbox #(RAM_transaction) scoreboard_rd_mbx,
                  mailbox #(RAM_transaction) reference_model_w_mbx,
-                 mailbox #(RAM_transaction) reference_model_rd_mbx)
+                 mailbox #(RAM_transaction) reference_model_rd_mbx);
 
     this.inf = inf;
     this.scoreboard_rd_mbx = scoreboard_rd_mbx;

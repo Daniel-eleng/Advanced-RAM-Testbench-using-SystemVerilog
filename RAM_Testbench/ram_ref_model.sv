@@ -34,7 +34,7 @@ class RAM_ref_model;
             if(rd_tr.w_enb == 0) begin
                 ref_tr = new();
                 ref_tr.data_out = RAM[rd_tr.rd_addr];
-                scoreboard_mbx.data_out.put(ref_tr);
+                scoreboard_mbx.put(ref_tr);
             end
         end
     join_none
