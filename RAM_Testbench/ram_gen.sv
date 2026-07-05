@@ -1,16 +1,16 @@
 `include "ram_trs.sv"
 
 class RAM_generator;
-    mailbox #(RAM_transaction) w_mb;
+    mailbox #(RAM_transaction) w_mbx;
     mailbox #(RAM_transaction) rd_mbx;
     int unsigned write_count, read_count;
 
-    function new(mailbox #(RAM_transaction) w_mb, 
+    function new(mailbox #(RAM_transaction) w_mbx, 
                  mailbox #(RAM_transaction) rd_mbx,
                  int unsigned write_count,
                  int unsigned read_count);
 
-        this.w_mb = w_mb;
+        this.w_mbx = w_mbx;
         this.rd_mbx = rd_mbx;
         this.write_count = write_count;
         this.read_count = read_count;
@@ -26,7 +26,7 @@ class RAM_generator;
                 $finish;
             end
         else
-            w_mb.put(tr);
+            w_mbx.put(tr);
         end
         repeat(read_count) begin
             tr = new();

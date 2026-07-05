@@ -6,6 +6,7 @@
 *.ip_user_files/
 *.dir
 *.pb
+*.vscode
 
 # Log and journal files
 *.jou
