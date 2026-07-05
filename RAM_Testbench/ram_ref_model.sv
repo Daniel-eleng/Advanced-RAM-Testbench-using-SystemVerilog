@@ -22,7 +22,7 @@ class RAM_ref_model;
 
     task run();
         RAM_transaction w_tr, rd_tr, ref_tr;
-fork
+    fork
         forever begin
             ref_w_mbx.get(w_tr);
             if(w_tr.w_enb == 1) begin
@@ -37,6 +37,6 @@ fork
                 scoreboard_mbx.data_out.put(ref_tr);
             end
         end
-join_none
+    join_none
     endtask
 endclass
