@@ -1,6 +1,5 @@
 interface ram_if(input logic clk);
   logic rst;
-  logic rst;
   logic w_enb;
   logic [2:0] w_addr;
   logic [2:0] rd_addr;

@@ -9,10 +9,11 @@ module top_module;
     clk = 0;
   always #5 clk = ~clk;
 
-  ram_inf inf(clk);
+  ram_if inf(clk);
 
   ram_design DUT(.clk(inf.clk),
                  .rst(inf.rst),
+                 .w_enb(inf.w_enb),
                  .w_addr(inf.w_addr),
                  .rd_addr(inf.rd_addr),
                  .data_in(inf.data_in),
