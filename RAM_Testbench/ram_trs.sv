@@ -12,8 +12,11 @@ class RAM_transaction;
     data_in = 0;
   endfunction
 
-  function print();
-    $display("At time %0t the values are: w_enb = %0h | w_addr = %0h | rd_addr = %0h | data_in = %0h | data_out = %0h",$time,w_enb,w_addr,rd_addr,data_in,data_out);
-
-  endfunction
+  constraint data_in_dist {
+    data_in dist{
+      8'h00 := 20,
+      8'hFF := 20,
+      [8'h01 : 8'hFE] := 60
+    };
+  }
 endclass
