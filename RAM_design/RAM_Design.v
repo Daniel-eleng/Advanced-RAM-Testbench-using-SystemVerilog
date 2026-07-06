@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module RAM_Design(input clk, rst, w_enb,
+module RAM_design(input clk, rst, w_enb,
                         input [2:0] w_addr, 
                         input [2:0] rd_addr,
                         input [7:0] data_in,

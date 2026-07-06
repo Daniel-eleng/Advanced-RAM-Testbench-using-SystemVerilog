@@ -1,5 +1,6 @@
 interface ram_if(input logic clk);
   logic rst;
+  logic rst;
   logic w_enb;
   logic [2:0] w_addr;
   logic [2:0] rd_addr;
@@ -10,6 +11,6 @@ interface ram_if(input logic clk);
     default input #1step output #0;
 
     input data_out;
-    output w_enb, w_addr, rd_addr, data_in;
+    output w_enb, w_addr, rd_addr, data_in, rst;
   endclocking
 endinterface

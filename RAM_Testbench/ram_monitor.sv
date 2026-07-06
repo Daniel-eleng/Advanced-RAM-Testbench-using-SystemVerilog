@@ -26,6 +26,9 @@ class RAM_monitor;
     forever
     begin
       @(inf.ram_cb);
+      if(inf.rst == 1) begin
+        continue;
+      end
       if(inf.ram_cb.w_enb == 1'b1)
       begin
         tr = new();

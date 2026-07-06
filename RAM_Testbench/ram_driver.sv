@@ -17,7 +17,7 @@ class RAM_driver;
 
   task run();
     RAM_transaction tr;
-
+    wait(inf.rst == 0);
     fork
       forever
       begin
