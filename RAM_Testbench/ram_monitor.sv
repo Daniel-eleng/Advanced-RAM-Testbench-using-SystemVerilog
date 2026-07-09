@@ -23,7 +23,7 @@ class RAM_monitor;
     RAM_transaction tr;
     forever begin
       @(inf.mon_cb);
-      if(inf.rst == 1) begin
+      if(inf.mon_cb.rst !== 0) begin
         pending_rd = 0;
         continue;
       end
@@ -48,8 +48,10 @@ class RAM_monitor;
         coverage_mbx.put(tr);
       end
       else begin
+        if (!$isunknown(inf.mon_cb.rd_addr)) begin
         pending_rd = 1;
         pending_rd_addr = inf.mon_cb.rd_addr;
+        end
       end
     end
   endtask
