@@ -6,7 +6,7 @@ interface ram_if(input logic clk);
   logic [7:0] data_in;
   logic [7:0] data_out;
 
-  clocking ram_cb(@posedge clk);
+  clocking ram_cb @(posedge clk);
     default input #1step output #0;
 
     input data_out;
