@@ -3,16 +3,13 @@
 class RAM_ref_model;
 
     logic [7:0] RAM [0:7];
-    mailbox #(RAM_transaction) ref_w_mbx;
-    mailbox #(RAM_transaction) ref_rd_mbx;
+    mailbox #(RAM_transaction) ref_mbx;
     mailbox #(RAM_transaction) scoreboard_mbx;
 
-    function new(mailbox #(RAM_transaction) ref_w_mbx,
-                 mailbox #(RAM_transaction) ref_rd_mbx,
+    function new(mailbox #(RAM_transaction) ref_mbx,
                  mailbox #(RAM_transaction) scoreboard_mbx);
         
-        this.ref_w_mbx = ref_w_mbx;
-        this.ref_rd_mbx = ref_rd_mbx;
+        this.ref_mbx = ref_mbx;
         this.scoreboard_mbx = scoreboard_mbx;
         
         foreach(RAM[i]) begin
@@ -21,22 +18,17 @@ class RAM_ref_model;
     endfunction
 
     task run();
-        RAM_transaction w_tr, rd_tr, ref_tr;
-    fork
+        RAM_transaction tr, ref_tr;
         forever begin
-            ref_w_mbx.get(w_tr);
-            if(w_tr.w_enb == 1) begin
-                RAM[w_tr.w_addr] = w_tr.data_in;
+            ref_mbx.get(tr);
+            if(tr.w_enb == 1) begin
+                RAM[tr.w_addr] = tr.data_in;
             end
-        end
-        forever begin
-            ref_rd_mbx.get(rd_tr);
-            if(rd_tr.w_enb == 0) begin
+            else begin
                 ref_tr = new();
-                ref_tr.data_out = RAM[rd_tr.rd_addr];
+                ref_tr.data_out = RAM[tr.rd_addr];
                 scoreboard_mbx.put(ref_tr);
             end
         end
-    join_none
     endtask
 endclass

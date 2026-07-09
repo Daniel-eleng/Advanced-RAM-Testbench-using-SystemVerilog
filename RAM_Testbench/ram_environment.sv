@@ -17,35 +17,31 @@ class RAM_environment;
 
   mailbox #(RAM_transaction) gen_to_drv_mbx;
 
-  mailbox #(RAM_transaction) mon_to_ref_w_mbx;
-  mailbox #(RAM_transaction) mon_to_ref_rd_mbx;
+  mailbox #(RAM_transaction) mon_to_ref_mbx;
 
-  mailbox #(RAM_transaction) mon_to_scb_w_mbx;
-  mailbox #(RAM_transaction) mon_to_scb_rd_mbx;
+  mailbox #(RAM_transaction) mon_to_scb_mbx;
 
   mailbox #(RAM_transaction) mon_to_cov_mbx;
 
   mailbox #(RAM_transaction) ref_to_scb_mbx;
 
-  function new(virtual ram_if inf, int unsigned w_count, int unsigned rd_count);
+  function new(virtual ram_if inf, int unsigned counter);
     this.inf = inf;
 
 
-    gen_to_drv_w_mbx = new();
-    mon_to_ref_w_mbx = new();
-    mon_to_ref_rd_mbx = new();
-    mon_to_scb_w_mbx = new();
-    mon_to_scb_rd_mbx = new();
+    gen_to_drv_mbx = new();
+    mon_to_ref_mbx = new();
+    mon_to_scb_mbx = new();
     mon_to_cov_mbx = new();
     ref_to_scb_mbx = new();
 
 
-    gen = new(gen_to_drv_mbx,w_count,rd_count);
+    gen = new(gen_to_drv_mbx,counter);
     driver = new(inf,gen_to_drv_mbx);
-    monitor = new(inf,mon_to_scb_w_mbx,mon_to_scb_rd_mbx,
-                  mon_to_ref_w_mbx,mon_to_ref_rd_mbx,mon_to_cov_mbx);
-    ref_model = new(mon_to_ref_w_mbx,mon_to_ref_rd_mbx,ref_to_scb_mbx);
-    scoreboard = new(mon_to_scb_rd_mbx,ref_to_scb_mbx);
+    monitor = new(inf,mon_to_scb_mbx,
+                  mon_to_ref_mbx,mon_to_cov_mbx);
+    ref_model = new(mon_to_ref_mbx,ref_to_scb_mbx);
+    scoreboard = new(mon_to_scb_mbx,ref_to_scb_mbx);
     coverage = new(mon_to_cov_mbx);
 
   endfunction

@@ -7,6 +7,7 @@ class RAM_coverage;
 
     function new(mailbox #(RAM_transaction) coverage_mbx);
         this.coverage_mbx = coverage_mbx;
+        ram_cg = new();
     endfunction
 
     covergroup ram_cg;

@@ -23,7 +23,14 @@ module top_module;
 
   initial
   begin
-    env = new(inf, 40, 40);
+    inf.ram_cb.rst <= 1;
+    @(inf.ram_cb);
+    inf.ram_cb.rst <= 0;
+  end
+
+  initial
+  begin
+    env = new(inf, 80);
     env.run();
     #1000;
     $finish;
