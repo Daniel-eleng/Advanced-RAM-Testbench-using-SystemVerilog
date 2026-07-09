@@ -30,9 +30,20 @@ module top_module;
 
   initial
   begin
+    $display("====================================================");
+    $display(" RAM VERIFICATION ENVIRONMENT — SIMULATION START");
+    $display("====================================================");
+
     env = new(inf, 80);
     env.run();
     #1000;
+
+    env.scoreboard.report();
+    $display(" Functional coverage: %0.2f%%", env.coverage.ram_cg.get_coverage());
+
+    $display("====================================================");
+    $display(" SIMULATION END");
+    $display("====================================================");
     $finish;
   end
 endmodule
