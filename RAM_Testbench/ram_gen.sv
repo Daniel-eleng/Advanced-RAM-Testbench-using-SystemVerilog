@@ -2,11 +2,10 @@
 
 class RAM_generator;
   mailbox #(RAM_transaction) generator_mbx;
-  int unsigned counter
+  int unsigned counter;
 
   function new(mailbox #(RAM_transaction) generator_mbx,
-                 int unsigned write_count,
-                 int unsigned read_count);
+               int unsigned counter);
 
     this.generator_mbx = generator_mbx;
     this.counter = counter;
