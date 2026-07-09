@@ -21,7 +21,6 @@ module top_module;
   begin
     inf.drv_cb.rst <= 1;
     @(inf.drv_cb);
-    @(inf.drv_cb);
     inf.drv_cb.rst <= 0;
   end
 
