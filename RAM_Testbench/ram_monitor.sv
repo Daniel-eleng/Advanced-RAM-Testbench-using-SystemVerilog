@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_monitor;
   virtual ram_if inf;
   mailbox #(RAM_transaction) scoreboard_mbx;
@@ -24,7 +22,7 @@ class RAM_monitor;
    task run();
     RAM_transaction tr;
     forever begin
-      @(inf.ram_cb);
+      @(inf.mon_cb);
       if(inf.rst == 1) begin
         pending_rd = 0;
         continue;
@@ -34,24 +32,24 @@ class RAM_monitor;
         tr = new();
         tr.w_enb = 0;
         tr.rd_addr = pending_rd_addr;
-        tr.data_out = inf.ram_cb.data_out;
+        tr.data_out = inf.mon_cb.data_out;
         scoreboard_mbx.put(tr);
         reference_model_mbx.put(tr);
         coverage_mbx.put(tr);
         pending_rd = 0;
       end
 
-      if(inf.ram_cb.w_enb == 1'b1) begin
+      if(inf.mon_cb.w_enb == 1'b1) begin
         tr = new();
         tr.w_enb = 1;
-        tr.w_addr = inf.ram_cb.w_addr;
-        tr.data_in = inf.ram_cb.data_in;
+        tr.w_addr = inf.mon_cb.w_addr;
+        tr.data_in = inf.mon_cb.data_in;
         reference_model_mbx.put(tr);
         coverage_mbx.put(tr);
       end
       else begin
         pending_rd = 1;
-        pending_rd_addr = inf.ram_cb.rd_addr;
+        pending_rd_addr = inf.mon_cb.rd_addr;
       end
     end
   endtask

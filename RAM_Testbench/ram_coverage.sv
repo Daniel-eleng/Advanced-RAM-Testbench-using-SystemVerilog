@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_coverage;
 
     RAM_transaction tr;

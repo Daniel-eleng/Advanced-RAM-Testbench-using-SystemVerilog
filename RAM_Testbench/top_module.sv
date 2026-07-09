@@ -1,7 +1,3 @@
-`include "ram_design.v"
-`include "ram_inf.sv"
-`include "ram_environment.sv"
-
 module top_module;
 
   bit clk;
@@ -23,9 +19,9 @@ module top_module;
 
   initial
   begin
-    inf.ram_cb.rst <= 1;
-    @(inf.ram_cb);
-    inf.ram_cb.rst <= 0;
+    inf.drv_cb.rst <= 1;
+    @(inf.drv_cb);
+    inf.drv_cb.rst <= 0;
   end
 
   initial

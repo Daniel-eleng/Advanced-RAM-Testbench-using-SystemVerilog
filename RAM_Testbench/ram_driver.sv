@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_driver;
   virtual ram_if inf;
   mailbox #(RAM_transaction) driver_mbx;
@@ -18,11 +16,11 @@ class RAM_driver;
     forever
     begin
       driver_mbx.get(tr);
-      @(inf.ram_cb);
-      inf.ram_cb.w_enb <= tr.w_enb;
-      inf.ram_cb.w_addr <= tr.w_addr;
-      inf.ram_cb.rd_addr <= tr.rd_addr;
-      inf.ram_cb.data_in <= tr.data_in;
+      @(inf.drv_cb);
+      inf.drv_cb.w_enb <= tr.w_enb;
+      inf.drv_cb.w_addr <= tr.w_addr;
+      inf.drv_cb.rd_addr <= tr.rd_addr;
+      inf.drv_cb.data_in <= tr.data_in;
 
       if(tr.w_enb)
         $display("[%0t] DRIVER | WRITE | w_addr=%0d | data_in=0x%0h",

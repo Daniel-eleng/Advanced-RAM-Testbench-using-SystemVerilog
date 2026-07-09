@@ -1,10 +1,3 @@
-`include "ram_gen.sv"
-`include "ram_driver.sv"
-`include "ram_monitor.sv"
-`include "ram_ref_model.sv"
-`include "ram_scoreboard.sv"
-`include "ram_coverage.sv"
-
 class RAM_environment;
   RAM_generator gen;
   RAM_driver driver;

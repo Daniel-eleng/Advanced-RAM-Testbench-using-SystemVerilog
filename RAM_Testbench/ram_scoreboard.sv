@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_scoreboard;
 
   mailbox #(RAM_transaction) monitor_rd_mbx;

@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_generator;
   mailbox #(RAM_transaction) generator_mbx;
   int unsigned counter;

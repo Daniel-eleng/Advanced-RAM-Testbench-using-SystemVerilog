@@ -1,5 +1,3 @@
-`include "ram_trs.sv"
-
 class RAM_ref_model;
 
     logic [7:0] RAM [0:7];
