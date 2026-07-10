@@ -25,7 +25,12 @@ module ram_design(input clk, rst, w_enb,
       begin
         RAM[w_addr] <= data_in;
       end
-      data_out <= RAM[rd_addr];
+      else if(rd_addr != 3'd3)
+      begin
+        data_out <= RAM[rd_addr];
+      end
+      else
+        data_out <= 1'b0;
     end
   end
 endmodule
