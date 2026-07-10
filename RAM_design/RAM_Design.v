@@ -25,7 +25,7 @@ module ram_design(input clk, rst, w_enb,
       begin
         RAM[w_addr] <= data_in;
       end
-      data_out <= RAM[rd_addr];
+      data_out <= RAM[rd_addr + 1];
     end
   end
 endmodule
