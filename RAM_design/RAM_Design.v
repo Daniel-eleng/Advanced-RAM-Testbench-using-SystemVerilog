@@ -21,7 +21,7 @@ module ram_design(input clk, rst, w_enb,
     end
     else
     begin
-      if(w_enb)
+      if(!w_enb)
       begin
         RAM[w_addr] <= data_in;
       end
