@@ -16,7 +16,7 @@ class RAM_transaction;
     data_in dist{
       8'h00 := 20,
       8'hFF := 20,
-      [8'h01 : 8'hFE] := 60
+      [8'h01 : 8'hFE] :/ 60
     };
   }
 endclass
